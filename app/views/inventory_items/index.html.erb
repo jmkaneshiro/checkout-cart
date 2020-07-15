@@ -1,0 +1,28 @@
+<h1>Inventory</h1>
+
+<table>
+  <tr>
+    <th>Inventory ID #</th>
+    <th>Product ID #</th>
+    <th>Product</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Purchased?</th>
+    <th>In Cart?</th>
+    <th></th>
+  </tr>
+  <% @inventory_items.each do |item|%>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.product_id %></td>
+      <td><%= item.product_name %></td>
+      <td><%= item.product_description %></td>
+      <td><%= item.product_price %></td>
+      <td><%= item.purchased %></td>
+      <td><%= item.in_cart %></td>
+      <td><%= button_to "Delete item", inventory_item_url(item), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "View/Edit Products & Add Inventory", products_url %>
