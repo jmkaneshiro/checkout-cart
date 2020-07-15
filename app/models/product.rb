@@ -11,4 +11,8 @@
 #
 class Product < ApplicationRecord
   validates :name, :price, presence: true
+
+    has_many :inventory_items,
+    foreign_key: :product_id,
+    class_name: :InventoryItem 
 end

@@ -20,3 +20,4 @@
   <input id="product-price" type="text" name="product[price]" value="<%= product.price %>"><br>
   <input type="submit" value="<%= (action == :edit) ? 'Save Changes' : 'Add Product' %>">
 </form>
+<%= link_to "View/Edit Products & Add Inventory", products_url %>
