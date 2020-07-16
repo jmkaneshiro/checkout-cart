@@ -13,7 +13,7 @@
     <tr>
       <td><%= product.name %></td>
       <td><%= product.description %></td>
-      <td><%= product.price %></td>
+      <td><%= number_to_currency(product.price) %></td>
       <td><%= product.inventory_items.where(purchased: false).size %></td>
       <td><%= link_to "Edit Product", edit_product_path(product) %></td>
       <td><%= render 'add_inventory', product: product %></td>
