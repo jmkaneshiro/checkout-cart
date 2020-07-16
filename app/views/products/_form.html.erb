@@ -16,8 +16,8 @@
   <input id="product-name" type="text" name="product[name]" value="<%= product.name %>"><br>
   <label for="product-description">Description</label>
   <textarea name="product[description]" id="product-description"><%= product.description %></textarea><br>
-  <label for="product-price">Price</label>
-  <input id="product-price" type="text" name="product[price]" value="<%= product.price %>"><br>
+  <label for="product-price">Price $</label>
+  <input id="product-price" type="text" name="product[price]" value="<%= number_with_precision(product.price, precision: 2) %>"><br>
   <input 
     type="submit" 
     value="<%= (action == :edit) ? 'Save Changes' : 'Add Product' %>"
