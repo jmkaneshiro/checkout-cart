@@ -20,7 +20,7 @@
       <td><%= item.product_price %></td>
       <td><%= item.purchased %></td>
       <td><%= item.in_cart %></td>
-      <td><%= button_to "Delete item", inventory_item_url(item), method: :delete %></td>
+      <td><%= button_to "Delete item", inventory_item_url(item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
