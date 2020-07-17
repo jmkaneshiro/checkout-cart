@@ -1,4 +1,4 @@
-class InventoryItemsController < ApplicationController
+class Admin::InventoryItemsController < ApplicationController
   def index
     @inventory_items = InventoryItem.all
     render :index
@@ -10,7 +10,7 @@ class InventoryItemsController < ApplicationController
     if @inventory_item
       render json: @inventory_item
     else
-      redirect_to inventory_items_url
+      redirect_to admin_inventory_items_url
     end
   end
 
@@ -18,7 +18,7 @@ class InventoryItemsController < ApplicationController
     @inventory_item = InventoryItem.new(inventory_item_params)
 
     if @inventory_item.save
-      redirect_to inventory_items_url
+      redirect_to admin_inventory_items_url
     else
       redirect_to product_url(inventory_item_params[:product_id])
     end
@@ -32,7 +32,7 @@ class InventoryItemsController < ApplicationController
       flash[:errors] = ['Item purchased or in cart. Cannot be deleted.']
     end
 
-    redirect_to inventory_items_url
+    redirect_to admin_inventory_items_url
   end
 
   private

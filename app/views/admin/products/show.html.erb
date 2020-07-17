@@ -5,6 +5,6 @@
 <p><%= number_to_currency(@product.price) %></p>
 
 <%= render 'add_inventory', product: @product %>
-<%= link_to "Edit Product", edit_product_path(@product) %><br>
-<%= link_to "View/Edit Products & Add Inventory", products_url %><br>
-<%= link_to "View All Inventory", inventory_items_url %>
+<%= link_to "Edit Product", edit_admin_product_path(@product) %><br>
+<%= link_to "View/Edit Products & Add Inventory", admin_products_url %><br>
+<%= link_to "View All Inventory", admin_inventory_items_url %>
