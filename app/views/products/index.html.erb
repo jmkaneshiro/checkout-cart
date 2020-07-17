@@ -22,10 +22,16 @@
           Out of stock
         <% end %>
       </td>
-      <td><%= link_to "Edit Product", edit_admin_product_path(product) %></td>
-      <td><%= render 'add_inventory', product: product %></td>
+      <td>
+        <% if total_in_stock > 0 %>
+          <input type="number" name="product[qty]" id="product-qty" value="1" min="1" max="<%= total_in_stock %>">
+        <% end %> 
+      </td>
+      <td>
+        <% if total_in_stock > 0 %>
+          <button type="submit">Add to Cart</button>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
-<%= link_to "Add New Product", new_admin_product_path %><br>
-<%= link_to "View All Inventory", admin_inventory_items_url %>
