@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :inventory_items, only: [:index, :show, :create, :destroy]
     root 'products#index'
   end
-  resources :products, only: [:index, :get]
-  
+  resources :products, only: [:index, :show]
+
   root 'products#index'
 end
