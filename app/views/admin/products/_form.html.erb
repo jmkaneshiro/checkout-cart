@@ -1,7 +1,7 @@
 <% if action == :edit %>
-  <% action_url = product_url(product) %>
+  <% action_url = admin_product_url(product) %>
 <% else %>
-  <% action_url = products_url %>
+  <% action_url = admin_products_url %>
 <% end %>
 
 <form action="<%= action_url %>" method="post">
@@ -23,5 +23,5 @@
     value="<%= (action == :edit) ? 'Save Changes' : 'Add Product' %>"
   >
 </form>
-<%= link_to "View/Edit Products & Add Inventory", products_url %>
+<%= link_to "View/Edit Products & Add Inventory", admin_products_url %>
 
