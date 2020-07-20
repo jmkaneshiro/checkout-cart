@@ -15,6 +15,10 @@ class InventoryItem < ApplicationRecord
     foreign_key: :product_id,
     class_name: :Product
   
+  has_many :cart_items,
+    foreign_key: :iventory_item_id,
+    class_name: :CartItem
+  
   delegate :id,
     :name,
     :description,

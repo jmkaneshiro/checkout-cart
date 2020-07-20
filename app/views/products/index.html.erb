@@ -11,27 +11,41 @@
   </tr>
   <% @products.each do |product|%>
     <% total_in_stock = product.inventory_items.where(purchased: false).size %>
-    <tr>
-      <td><%= product.name %></td>
-      <td><%= product.description %></td>
-      <td><%= number_to_currency(product.price) %></td>
-      <td>
-        <% if total_in_stock > 0 %>
-          <%= total_in_stock %>
-        <% else %>
-          Out of stock
-        <% end %>
-      </td>
-      <td>
-        <% if total_in_stock > 0 %>
-          <input type="number" name="product[qty]" id="product-qty" value="1" min="1" max="<%= total_in_stock %>">
-        <% end %> 
-      </td>
-      <td>
-        <% if total_in_stock > 0 %>
-          <button type="submit">Add to Cart</button>
-        <% end %>
-      </td>
-    </tr>
+    <form action="<%= cart_items_url %>" method="post">
+        <input type="hidden" 
+        value="<%= form_authenticity_token() %>" 
+        name="authenticity_token"/>
+        <input type="hidden" 
+        value="<%= product.id %>" 
+        name="cart_item[product_id]"/>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.description %></td>
+          <td><%= number_to_currency(product.price) %></td>
+          <td>
+            <% if total_in_stock > 0 %>
+              <%= total_in_stock %>
+            <% else %>
+              Out of stock
+            <% end %>
+          </td>
+          <td>
+            <% if total_in_stock > 0 %>
+              <input 
+                type="number"
+                name="cart_item[qty]" 
+                id="product-qty" 
+                value=1 
+                min=1 
+                max=<%= total_in_stock %>>
+            <% end %> 
+          </td>
+          <td>
+            <% if total_in_stock > 0 %>
+              <input type="submit" value="Add to Cart">
+            <% end %>
+          </td>
+        </tr>
+    </form>
   <% end %>
 </table>
