@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     root 'products#index'
   end
   resources :products, only: [:index, :show]
-  get 'cart', to: 'carts#index'
+  resources :cart_items, only: [:create, :update, :destroy]
+  get 'cart', to: 'cart#index'
 end

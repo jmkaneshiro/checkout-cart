@@ -16,4 +16,14 @@ class CartItem < ApplicationRecord
   belongs_to :inventory_item,
     foreign_key: :inventory_item_id,
     class_name: :InventoryItem
+
+  has_one :product,
+  through: :inventory_item
+
+  delegate :id,
+  :name,
+  :description,
+  :price,
+  to: :product,
+  prefix: true
 end

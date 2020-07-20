@@ -15,4 +15,7 @@ class Product < ApplicationRecord
     has_many :inventory_items,
     foreign_key: :product_id,
     class_name: :InventoryItem 
+
+    has_many :cart_items,
+    through: :inventory_items
 end

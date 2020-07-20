@@ -1,0 +1,26 @@
+<h1>Your Cart</h1>
+
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Description</th>
+    <th>Price Per Unit</th>
+    <th>Qty</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% product_counts = Hash.new(0) %>
+  <% current_cart.cart_items.each do |item|%>
+    <% product_counts[item.product_id] += 1 %>
+  <% end %>
+
+  <% product_counts.each do |key, value|%>
+    <% product = Product.find(key) %>
+    <tr>
+      <td><%= product.name  %></td>
+      <td><%= product.description %></td>
+      <td><%= number_to_currency(product.price) %></td>
+      <td><%= value %></td>
+    </tr>
+  <% end %>
+</table>

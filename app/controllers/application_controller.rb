@@ -3,8 +3,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
   private
   def set_cart
-    # For testing purposes: set cart to always equal 1
-    @cart = Cart.find(1)
+      @cart = Cart.find(session[:cart_id])
+      rescue ActiveRecord::RecordNotFound
+      @cart = Cart.create
+      session[:cart_id] = @cart.id
   end
 
   def current_cart
