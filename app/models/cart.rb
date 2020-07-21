@@ -25,4 +25,26 @@ class Cart < ApplicationRecord
       end
     end
   end
+
+  def cart_total_value(cart_items)
+    total = 0
+
+    cart_items.each do |item|
+      total += item.product_price
+    end
+
+    total
+  end
+
+  def product_qty(cart_items)
+    product_counts = Hash.new(0)
+
+    cart_items.each do |item|
+      product_counts[item.product_id] += 1
+    end
+  end
+
+  def product_subtotal(product, qty)
+    product.price * qty
+  end
 end
