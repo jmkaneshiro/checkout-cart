@@ -5,12 +5,12 @@
     <th>Product</th>
     <th>Description</th>
     <th>Price</th>
-    <th>Total In Stock</th>
-    <th></th>
+    <th>Total Available</th>
+    <th>Qty</th>
     <th></th>
   </tr>
   <% @products.each do |product|%>
-    <% total_in_stock = product.inventory_items.where(purchased: false).size %>
+    <% total_available = product.inventory_items.where(purchased: false, in_cart: false).size %>
     <form action="<%= cart_items_url %>" method="post">
         <input type="hidden" 
         value="<%= form_authenticity_token() %>" 
@@ -23,25 +23,25 @@
           <td><%= product.description %></td>
           <td><%= number_to_currency(product.price) %></td>
           <td>
-            <% if total_in_stock > 0 %>
-              <%= total_in_stock %>
+            <% if total_available > 0 %>
+              <%= total_available %>
             <% else %>
               Out of stock
             <% end %>
           </td>
           <td>
-            <% if total_in_stock > 0 %>
+            <% if total_available > 0 %>
               <input 
                 type="number"
                 name="cart_item[qty]" 
                 id="product-qty" 
-                value=1 
-                min=1 
-                max=<%= total_in_stock %>>
+                value="1" 
+                min="1"
+                max=<%= total_available %>>
             <% end %> 
           </td>
           <td>
-            <% if total_in_stock > 0 %>
+            <% if total_available > 0 %>
               <input type="submit" value="Add to Cart">
             <% end %>
           </td>
@@ -49,3 +49,4 @@
     </form>
   <% end %>
 </table>
+<%= link_to "View Cart", cart_url %>

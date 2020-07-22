@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
       session[:cart_id] = @cart.id
   end
 
+  def reset_cart
+  end
+
   def current_cart
     if !session[:cart_id].nil?
       Cart.find(session[:cart_id])

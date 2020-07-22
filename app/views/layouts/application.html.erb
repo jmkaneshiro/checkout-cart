@@ -10,11 +10,9 @@
   </head>
 
   <body>
-    <div class="errors">
-    <% if flash[:errors] %>
-      <% flash[:errors].each do |error| %>
-        <%= error %>
-      <% end %>
+    <div>
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}", style:"color: red;") %>
     <% end %>
     </div>
     <%= yield %>
