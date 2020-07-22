@@ -10,7 +10,6 @@
 #
 class Order < ApplicationRecord
   enum status: {
-    pending: "pending",
     ordered: "ordered",
     cancelled: "cancelled"
   }
