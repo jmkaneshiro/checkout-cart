@@ -8,7 +8,6 @@
     <th>Qty</th>
     <th>Subtotal</th>
     <th></th>
-    <th></th>
   </tr>
   <% product_counts = Hash.new(0) %>
   <% current_cart.cart_items.each do |item|%>
@@ -24,13 +23,8 @@
       <td><%= qty %></td>
       <td><%= number_to_currency(@cart.product_subtotal(product, qty)) %></td>
       <td><button>Update Qty</button></td>
-      <td><button>Remove Product</button></td>
     </tr>
   <% end %>
 </table>
-<h2>Total Price</h2>
-<p>
-  <%= number_to_currency(@cart.cart_total_value(current_cart.cart_items))%>
-</p>
-<button>Checkout</button>
-<button>Clear Cart</button>
+<button><%= link_to "Checkout", new_order_url %></button>
+<%= link_to "View Products", products_url %>

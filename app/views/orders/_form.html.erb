@@ -1,0 +1,51 @@
+<% if action == :edit %>
+  <% action_url = order_url(order) %>
+<% else %>
+  <% action_url = orders_url %>
+<% end %>
+
+<h2>Review your order</h2>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Description</th>
+    <th>Price Per Unit</th>
+    <th>Qty</th>
+    <th>Subtotal</th>
+  </tr>
+  <% product_counts = Hash.new(0) %>
+  <% @cart.cart_items.each do |item|%>
+    <% product_counts[item.product_id] += 1 %>
+  <% end %>
+  
+  <% product_counts.each do |product_id, qty|%>
+    <% product = Product.find(product_id) %>
+    <tr>
+      <td><%= product.name  %></td>
+      <td><%= product.description %></td>
+      <td><%= number_to_currency(product.price) %></td>
+      <td><%= qty %></td>
+      <td><%= number_to_currency(@cart.product_subtotal(product, qty)) %></td>
+    </tr>
+  <% end %>
+</table>
+<h2>Total Price</h2>
+<p>
+  <%= number_to_currency(@cart.cart_total_value(current_cart.cart_items))%>
+</p>
+<form action="<%= action_url %>" method="post">
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+  
+  <input type="hidden" 
+        value="<%= form_authenticity_token() %>" 
+        name="authenticity_token"/>
+  <input type="hidden" 
+        value="<%= @cart.id %>" 
+        name="order[cart_id]"/>
+  <input 
+    type="submit" 
+    value="<%= (action == :edit) ? 'Cancel Order' : 'Place Your Order' %>"
+  >
+</form>

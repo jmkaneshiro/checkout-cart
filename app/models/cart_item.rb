@@ -2,11 +2,11 @@
 #
 # Table name: cart_items
 #
-#  id           :bigint           not null, primary key
-#  inventory_id :integer
-#  cart_id      :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                :bigint           not null, primary key
+#  inventory_item_id :integer
+#  cart_id           :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 class CartItem < ApplicationRecord
   belongs_to :cart,
